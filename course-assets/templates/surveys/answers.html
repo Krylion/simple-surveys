@@ -1,0 +1,54 @@
+
+    <!-- Etykieta strony -->
+
+    <h4>
+        Odpowiedzi
+    </h4>
+
+    <!-- Zawartość strony -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Informacja o ankiecie -->
+            <h3>
+                Lista odpowiedzi:
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Akordeon odpowiedzi -->
+            <!-- Jeżeli istnieją jakieś odpowiedzi, wyświetlamy je -->
+            <div id="accordion">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <!-- Wyświetlenie imienia ankietowanego -->
+                      Imię ankietowanego: Imię
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse answer-collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body">
+                    <!-- Wyświetlenie daty -->
+                    <strong>Udzielono dnia:</strong>
+                    <br />
+                    <strong>Odpowiedzi:</strong>
+                    <!-- Wyświetlenie odpowiedzi -->
+                    <div class="col-md-12 text-right">
+                        <!-- Przycisk usuwania -->
+                        <a class="btn btn-danger btn-sm" href="">USUŃ</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- W przeciwnym wypadku informujemy użytkownika o braku odpowiedzi -->
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych odpowiedzi do tej ankiety</small>
+            </p>
+        </div>
+    </div>

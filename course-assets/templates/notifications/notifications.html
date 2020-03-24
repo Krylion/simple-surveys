@@ -1,0 +1,52 @@
+
+    <!-- Etykieta strony -->
+
+    <h4>
+        Powiadomienia
+    </h4>
+
+    <!-- Zawartość strony -->
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <!-- Przycisk odznaczania powiadomień -->
+            <a href="" class="btn btn-primary">Oznacz jako przeczytane</a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Lista Twoich powiadomień
+            </h3>
+            <!-- Jeżeli istnieją jakieś powiadomienia, wyświetlamy listę -->
+            <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Wiadomość</th>
+                      <th class="text-right" scope="col">Operacje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Lista powiadomień -->
+                    <tr>
+                      <th scope="row">1</th>
+                      <td><strong>Nieprzeczytane Powiadomienie 1</strong></td>
+                      <td class="text-right">
+                          <a href="" class="btn btn-info btn-sm">Przejdź</a>
+                          <a href="" class="btn btn-danger btn-sm">Usuń</a>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+            <!-- W przeciwnym wypadku informujemy użytkownika o braku powiadomień -->
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych powiadomień</small>
+            </p>
+        </div>
+        <hr>
+    </div>

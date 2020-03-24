@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %} {% load static %}
+
+    <!-- Etykieta strony -->
+    {% block site_title %}
+    <h4>
+        Udziel odpowiedzi
+    </h4>
+    {% endblock %}
+    <!-- Zawartość strony -->
+    {% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Informacja o ankiecie -->
+            <h3>
+                {{ survey.name }}
+            </h3>
+            <br />
+        </div>
+    </div>
+
+    <form class="form-horizontal" id="surveyAnswerForm" role="form" method="POST" action="">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h4 class="text-center">Udziel odpowiedzi na następujące pytania:</h4>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% csrf_token %}
+                <p>
+                    <label for="firstName">
+                        Twoje imię:
+                    </label>
+                    <input type="text" name="first-name" value="" maxlength="50" id="firstName" required="">
+                </p>
+                {% for question in questions %}
+                    <p>
+                        {% if question.q_type == 1 %}
+                            <label for="q-{{question.id}}">
+                                {{ question.name }}
+                            </label>
+                            <small><em>{{ question.description }}</em></small>
+                            <textarea type="text" name="{{question.id}}" value="" maxlength="50" id="q-{{question.id}}" required=""></textarea>
+                        {% else %}
+                            <label>
+                                {{ question.name }}
+                            </label>
+                            <small><em>{{ question.description }}</em></small>
+                            <br />
+                            <input type="radio" name="{{question.id}}" value="TAK" required=""> TAK
+                            <input type="radio" name="{{question.id}}" value="NIE" required=""> NIE
+                        {% endif %}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-success" form="surveyAnswerForm">Prześlij odpowiedzi</button>
+            </div>
+        </div>
+    </form>
+    {% endblock %}

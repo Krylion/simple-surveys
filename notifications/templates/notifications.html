@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %} {% load static %}
+
+    <!-- Etykieta strony -->
+    {% block site_title %}
+    <h4>
+        Powiadomienia
+    </h4>
+    {% endblock %}
+    <!-- Zawartość strony -->
+    {% block content %}
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <!-- Przycisk odznaczania powiadomień -->
+            <a href="{% url 'set-as-read' %}" class="btn btn-primary">Oznacz jako przeczytane</a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Lista Twoich powiadomień
+            </h3>
+            <!-- Jeżeli istnieją jakieś powiadomienia, wyświetlamy listę -->
+            {% if notifications %}
+            <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Wiadomość</th>
+                      <th class="text-right" scope="col">Operacje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Lista powiadomień -->
+                    {% for notification in notifications %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>
+                          {% if not notification.read %}
+                            <strong>{{ notification.message }}</strong>
+                          {% else %}
+                            {{ notification.message }}
+                          {% endif %}
+                      </td>
+                      <td class="text-right">
+                          <a href="{% url 'answers' notification.survey.id %}" class="btn btn-info btn-sm">Przejdź</a>
+                          <a href="{% url 'delete-notification' notification.id %}" class="btn btn-danger btn-sm">Usuń</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+            <!-- W przeciwnym wypadku informujemy użytkownika o braku powiadomień -->
+            {% else %}
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych powiadomień</small>
+            </p>
+            {% endif %}
+        </div>
+        <hr>
+    </div>
+    {% endblock %}

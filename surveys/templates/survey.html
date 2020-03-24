@@ -1,0 +1,116 @@
+{% extends 'core/base.html' %} {% load static %}
+
+    <!-- Etykieta strony -->
+    {% block site_title %}
+    <h4>
+        Ankieta nr {{ survey.id }}
+    </h4>
+    {% endblock %}
+    <!-- Zawartość strony -->
+    {% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <h3>
+                Link do udostępniania:
+                <br />
+            </h3>
+            <!-- Link do udostępniania -->
+            <small>
+                <em>
+                    {{ request.get_host }}{% url 'share-survey' survey.id survey.name %}
+                </em>
+            </small>
+            <p class="padding-top-bottom-30">
+                <!-- Nazwa oraz opis ankiety -->
+                <strong>Nazwa ankiety: </strong> {{ survey.name }}
+                <br />
+                <strong>Opis: </strong>
+                <br />
+                <small>
+                    <em>
+                        {{ survey.description }}
+                    </em>
+                </small>
+            </p>
+        </div>
+        <div class="col-md-6 text-right">
+            <!-- Menu ankiety -->
+            <button id="surveyEditButton" class="btn btn-success">Edytuj</button>
+            <a href="{% url 'create-question' survey.id %}" class="btn btn-secondary">Dodaj pytanie</a>
+            <a href="{% url 'answers' survey.id %}" class="btn btn-info">Zobacz odpowiedzi</a>
+            <a href="{% url 'delete-survey' survey.id %}" class="btn btn-danger">Usuń</a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row" id="surveyEditRow">
+        <!-- Formularz edycji ankiety -->
+        <form class="form-horizontal" id="surveyChangeForm" role="form" method="POST" action="{% url 'survey' survey.id %}">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h2>Edycja ankiety</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <!-- Wyświetlenie formularza -->
+                    {% csrf_token %}
+                    {{ survey_edit_form.as_p }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success" form="surveyChangeForm">Zapisz</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Lista pytań
+            </h3>
+            <!-- Jeżeli istnieją jakieś pytania, wyświetlamy listę -->
+            {% if questions %}
+            <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nazwa</th>
+                      <th scope="col">Typ</th>
+                      <th scope="col">Opis</th>
+                      <th class="text-right" scope="col">Operacje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Lista pytań -->
+                    {% for question in questions %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ question.name }}</td>
+                      <td>
+                          {% if question.q_type == 1 %} Otwarte {% else %} Zamknięte {% endif %}
+                      </td>
+                      <td><small>{{ question.description }}</small></td>
+                      <td class="text-right"><a href="{% url 'delete-question' survey.id question.id %}" class="btn btn-danger btn-sm">Usuń</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+            <!-- W przeciwnym wypadku informujemy użytkownika o braku pytań -->
+            {% else %}
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych pytań do tej ankiety.</small>
+            </p>
+            {% endif %}
+        </div>
+        <hr>
+    </div>
+    {% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %} {% load static %}
+
+    <!-- Etykieta strony -->
+    {% block site_title %}
+    <h4>
+        Odpowiedzi
+    </h4>
+    {% endblock %}
+    <!-- Zawartość strony -->
+    {% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Informacja o ankiecie -->
+            <h3>
+                Lista odpowiedzi:
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Akordeon odpowiedzi -->
+            <!-- Jeżeli istnieją jakieś odpowiedzi, wyświetlamy je -->
+            {% if answers %}
+            <div id="accordion">
+
+              {% for answer in answers %}
+              <div class="card">
+                <div class="card-header" id="heading-{{ answer.id }}">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{ answer.id }}" aria-expanded="true" aria-controls="collapse-{{ answer.id }}">
+                      Imię ankietowanego: {{answer.first_name}}
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapse-{{ answer.id }}" class="collapse answer-collapse" aria-labelledby="heading-{{ answer.id }}" data-parent="#accordion">
+                  <div class="card-body">
+                      <strong>Udzielono dnia:</strong> {{ answer.created }}
+                      <br />
+                      <strong>Odpowiedzi:</strong>
+                      {{ answer.answers | safe}}
+                      <div class="col-md-12 text-right">
+                          <a class="btn btn-danger btn-sm" href="{% url 'delete-answer' answer.survey.id answer.id %}">USUŃ</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <!-- W przeciwnym wypadku informujemy użytkownika o braku odpowiedzi -->
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych odpowiedzi do tej ankiety</small>
+            </p>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}

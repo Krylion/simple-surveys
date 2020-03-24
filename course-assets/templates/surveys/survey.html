@@ -1,0 +1,102 @@
+
+    <!-- Etykieta strony -->
+
+    <h4>
+        Ankieta nr
+    </h4>
+
+    <!-- Zawartość strony -->
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>
+                Link do udostępniania:
+            </h3>
+            <!-- Link do udostępniania -->
+            <small>
+                <em>
+                </em>
+            </small>
+            <p class="padding-top-bottom-30">
+                <!-- Nazwa oraz opis ankiety -->
+                <strong>Nazwa ankiety: </strong>
+                <br />
+                <strong>Opis: </strong>
+                <br />
+                <small>
+                    <em>
+                    </em>
+                </small>
+            </p>
+        </div>
+        <div class="col-md-6 text-right">
+            <!-- Menu ankiety -->
+            <button id="surveyEditButton" class="btn btn-success">Edytuj</button>
+            <a href="" class="btn btn-secondary">Dodaj pytanie</a>
+            <a href="" class="btn btn-info">Zobacz odpowiedzi</a>
+            <a href="" class="btn btn-danger">Usuń</a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row" id="surveyEditRow">
+        <!-- Formularz edycji ankiety -->
+        <form class="form-horizontal hidden-form" id="surveyChangeForm" role="form" method="POST" action="">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h2>Edycja ankiety</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <!-- Wyświetlenie formularza -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success" form="surveyChangeForm">Zapisz</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Lista pytań
+            </h3>
+            <!-- Jeżeli istnieją jakieś pytania, wyświetlamy listę -->
+            <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nazwa</th>
+                      <th scope="col">Typ</th>
+                      <th scope="col">Opis</th>
+                      <th class="text-right" scope="col">Operacje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Lista pytań -->
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Pytanie</td>
+                      <td>Zamknięte</td>
+                      <td><small>Opis</small></td>
+                      <td class="text-right"><a href="" class="btn btn-danger btn-sm">Usuń</a></td>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+            <!-- W przeciwnym wypadku informujemy użytkownika o braku pytań -->
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych pytań do tej ankiety.</small>
+            </p>
+        </div>
+        <hr>
+    </div>

@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %} {% load static %}
+
+    <!-- Etykieta strony -->
+    {% block site_title %}
+    <h4>
+        Twoje ankiety
+    </h4>
+    {% endblock %}
+    <!-- Zawartość strony -->
+    {% block content %}
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <!-- Przycisk tworzenia nowej ankiety -->
+            <a href="{% url 'create-survey' %}" class="btn btn-primary">Utwórz nową</a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Lista Twoich ankiet
+            </h3>
+
+            {% if surveys %}
+            <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nazwa</th>
+                      <th scope="col">Opis</th>
+                      <th class="text-right" scope="col">Operacje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Lista ankiet -->
+                    {% for survey in surveys %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ survey.name }}</td>
+                      <td><small>{{ survey.description }}</small></td>
+                      <td class="text-right"><a href="{% url 'survey' survey.id %}" class="btn btn-success btn-sm">Edytuj</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+            {% else %}
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych ankiet</small>
+            </p>
+            {% endif %}
+        </div>
+        <hr>
+    </div>
+    {% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %} {% load static %}
+
+    <!-- Etykieta strony -->
+    {% block site_title %}
+    <h4>
+        Panel użytkownika
+    </h4>
+    {% endblock %}
+
+    <!-- Zawartość strony -->
+    {% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <p>
+                <h2>
+                    Witaj
+                    {{ user.username }}
+                    <br />
+                </h2>
+                <h4>
+                    <small>
+                        <em>
+                            Wybierz jedną z powyższych opcji w MENU.
+                        </em>
+                    </small>
+                </h4>
+            </p>
+        </div>
+    </div>
+    {% endblock %}

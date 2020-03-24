@@ -1,0 +1,51 @@
+
+    <!-- Etykieta strony -->
+
+    <h4>
+        Twoje ankiety
+    </h4>
+
+    <!-- Zawartość strony -->
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <!-- Przycisk tworzenia nowej ankiety -->
+            <a href="" class="btn btn-primary">Utwórz nową</a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Lista Twoich ankiet
+            </h3>
+            <!-- Jeżeli istnieją jakieś ankiety, wyświetlamy listę -->
+            <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nazwa</th>
+                      <th scope="col">Opis</th>
+                      <th class="text-right" scope="col">Operacje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Lista ankiet -->
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Ankieta</td>
+                      <td><small>Opis ankiety</small></td>
+                      <td class="text-right"><a href="" class="btn btn-success btn-sm">Edytuj</a></td>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+            <!-- W przeciwnym wypadku informujemy użytkownika o braku ankiet -->
+            <p class="text-center">
+                <small>Obecnie nie posiadasz żadnych ankiet</small>
+            </p>
+        </div>
+        <hr>
+    </div>
